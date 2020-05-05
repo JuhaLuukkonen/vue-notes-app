@@ -6,22 +6,19 @@ export const loadNotes = () => {
         {
           id: 1,
           title: "Testi1",
-          content:
-            "Sisältö2",
+          content: "Sisältö2",
           status: "New"
         },
         {
           id: 2,
           title: "Testi2",
-          content:
-            "Sisältö2",
+          content: "Sisältö2",
           status: "Completed"
         },
         {
           id: 3,
           title: "Testi3",
-          content:
-            "Sisältö3",
+          content: "Sisältö3",
           status: "Not completed"
         }
       ]);
