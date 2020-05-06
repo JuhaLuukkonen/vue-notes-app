@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400&display=swap" rel="stylesheet">
+
+    <title>Vue notes app</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+<div id="wrapper">
+    <div id="app"></div>
+
+<!-- Juha, adding google.maps.Map -location, 6.5.2020 -->
+<p style="text-align:center;">
+  <button onclick="getLocation()">Locate </button>
+</p>
+
+<!-- saved area -->
+<!-- save web page display area -->
+<script>
+    (function(exports) {
+    function urlsToAbsolute(nodeList) {
+        if (!nodeList.length) {
+            return [];
+        }
+        var attrName = 'href';
+        if (nodeList[0].__proto__ === HTMLImageElement.prototype || nodeList[0].__proto__ === HTMLScriptElement.prototype) {
+            attrName = 'src';
+        }
+        nodeList = [].map.call(nodeList, function(el, i) {
+            var attr = el.getAttribute(attrName);
+            if (!attr) {
+                return;
+            }
+            var absURL = /^(https?|data):/i.test(attr);
+            if (absURL) {
+                return el;
+            } else {
+                return el;
+            }
+        });
+        return nodeList;
+    }
+
+    function screenshotPage() {
+        var wrapper = document.getElementById('wrapper');
+        html2canvas(wrapper, {
+            onrendered: function(canvas) {
+                canvas.toBlob(function(blob) {
+                    saveAs(blob, 'locationnotes.png'); // browser extra settings -> downloads -> let user decide destination folder
+                });
+            }
+        });
+    }
+
+    function addOnPageLoad_() {
+        window.addEventListener('DOMContentLoaded', function(e) {
+            var scrollX = document.documentElement.dataset.scrollX || 0;
+            var scrollY = document.documentElement.dataset.scrollY || 0;
+            window.scrollTo(scrollX, scrollY);
+        });
+    }
+
+    function generate() {
+        screenshotPage();
+    }
+    exports.screenshotPage = screenshotPage;
+    exports.generate = generate;
+})(window);
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    
+    <form class="cf">
+        <div class="half left cf">
+                
+         </div>
+    </form>
+<!-- </div> -->
+
+    <!-- end of saving web page/closing div lower -->
+
+    <!-- file attachment -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<div id="wrapper" style="text-align:center;margin-top: 20px;"><input id="fileUpload" multiple="multiple" type="file"/> 
+<div id="image-holder"></div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+        $("#fileUpload").on('change', function() {
+          //Get count of selected files
+          var countFiles = $(this)[0].files.length;
+          var imgPath = $(this)[0].value;
+          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+          var image_holder = $("#image-holder");
+          image_holder.empty();
+          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+            if (typeof(FileReader) != "undefined") {
+              //loop for each file selected for uploaded.
+              for (var i = 0; i < countFiles; i++) 
+              {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image"
+                  }).appendTo(image_holder);
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[i]);
+              }
+            } else {
+              alert("This browser does not support FileReader.");
+            }
+          } else {
+            alert("Pls select only images");
+          }
+        }); 
+      });
+</script>
+</div>
+</br></br>
+    <!-- end of file attachment -->
+    <!-- button for saving web page -->
+<p style="text-align:center;">
+  <button class="btn btn-success" href="javascript:void(0);" onclick="generate();">Save </button>
+</p>
+    <!-- end for button for saving web page -->
+
+    <!-- built files will be auto injected -->
+  </body>
+</html>
