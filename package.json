@@ -1,5 +1,6 @@
 {
-  "name": "saving-quick-notes-vue",
+  "homepage": "http://JuhaLuukkonen.github.io/vue-notes-app",
+  "name": "vue-notes-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
