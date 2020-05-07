@@ -1,5 +1,7 @@
 # Vue - notes - app
 
+Node(JS) [https://nodejs.org/en/] and Yarn [https://yarnpkg.com/] have to be installed.
+
 ## Project setup
 ```
 yarn install
